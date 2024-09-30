@@ -44,33 +44,25 @@ class _LoginScrenState extends State<LoginScren> {
     );
 
     // Create the user with Firebase
-    final User? firebaseUser = (await fAuth
-            .createUserWithEmailAndPassword(
+    final User? firebaseUser = (await fAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
-    )
-            .catchError((error) {
-      Navigator.pop(context); // Dismiss the dialog
-      Fluttertoast.showToast(msg: "Error: $error");
-      print("Error during account creation: $error");
-      return null;
-    }))
+    ))
         .user;
 
     // If the user creation was successful
     if (firebaseUser != null) {
       print('Firebase User ID: ${firebaseUser.uid}');
-
       currentFirebaseUser = firebaseUser;
-      Fluttertoast.showToast(msg: "Login Succes.");
-      // Navigate to CarInfoScreen after successful registration
+
+      Fluttertoast.showToast(msg: "Login Success.");
       Navigator.push(
         context,
         MaterialPageRoute(builder: (c) => const SplashScreen()),
       );
     } else {
       Navigator.pop(context); // Dismiss the dialog
-      Fluttertoast.showToast(msg: "Error Occured during Login.");
+      Fluttertoast.showToast(msg: "Error Occurred during Login.");
     }
   }
 
@@ -161,7 +153,7 @@ class _LoginScrenState extends State<LoginScren> {
                             builder: (c) => const SignupScreen()));
                   },
                   child: const Text(
-                    'Already have an Account? Login here',
+                    'Don\'t have an Account? Signup here',
                     style: TextStyle(color: Colors.grey),
                   )),
             ],

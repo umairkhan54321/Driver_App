@@ -21,7 +21,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8" // Keep this as a string
     }
-
+        
     defaultConfig {
         applicationId = "com.example.driver_app"
         minSdkVersion 23 // Replace this with the minimum SDK version for your project
