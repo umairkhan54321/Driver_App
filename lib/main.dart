@@ -1,17 +1,18 @@
 import 'package:driver_app/Screens/Splash_Screen.dart/Splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp( MyApp(
-      child: SplashScreen()
-    
-  ));
+  await Firebase.initializeApp();
+
+  runApp(const MyApp());
 }
+
 class MyApp extends StatefulWidget {
-  final Widget? child;
-   MyApp({this.child});
-  static void restartApp(BuildContext context){
+  const MyApp({super.key});
+
+  static void restartApp(BuildContext context) {
     context.findAncestorStateOfType<_MyAppState>()!.restartApp();
   }
 
@@ -20,18 +21,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  Key key = UniqueKey();
 
-  Key key=UniqueKey();
-  void restartApp(){
+  void restartApp() {
     setState(() {
-      key=UniqueKey();
+      key = UniqueKey();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return KeyedSubtree(
-      key: key,
-      child: widget.child!);
+    return MaterialApp(
+      // Wrap with MaterialApp to provide Directionality
+      home: KeyedSubtree(
+        key: key,
+        child: const SplashScreen(), // Provide your SplashScreen widget here
+      ),
+    );
   }
 }

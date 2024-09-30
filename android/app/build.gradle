@@ -3,12 +3,15 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 android {
     namespace = "com.example.driver_app"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    
+    // Set these to specific values instead of relying on flutter.*
+    compileSdkVersion 34 // Replace this with the actual SDK version you have installed
+    ndkVersion "23.1.7779620" // You can adjust this to your installed NDK version if needed
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -16,29 +19,24 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = "1.8" // Keep this as a string
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.driver_app"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdkVersion 23 // Replace this with the minimum SDK version for your project
+        targetSdkVersion 34 // Set this to your installed target SDK version
+        versionCode 1 // Your version code
+        versionName "1.0" // Your version name
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
         }
     }
 }
 
 flutter {
-    source = "../.."
+    source = "../.." // This is usually correct unless you have a different path for your Flutter project.
 }

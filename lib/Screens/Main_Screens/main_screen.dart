@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       body: TabBarView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
         children:const[
           HomeTab(),
@@ -59,7 +59,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         selectedItemColor: Colors.white,
         backgroundColor: Colors.black,
         type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: TextStyle(fontSize: 24),
+        selectedLabelStyle: const TextStyle(fontSize: 24),
         showSelectedLabels: true,
         currentIndex: selectedIndex,
         onTap: onItemClicked,
